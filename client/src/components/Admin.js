@@ -3,7 +3,7 @@ import DisplaySkills from "./admin/DisplaySkills";
 
 const Admin  = () => {
     return (
-        <div className="flex border flex-row w-full h- content-center p-4 justify-between items-center"> 
+        <div className="flex border flex-row w-full h- content-center p-4 justify-between items-left"> 
             <AddSkill />
             <DisplaySkills/>
         </div>

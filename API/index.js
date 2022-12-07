@@ -4,15 +4,20 @@ const neo4j = require("neo4j-driver");
 
 const typeDefs = gql`
     type SKILL {
+        id: ID! @id
         skill_name: String
-        users: [USER!]! @relationship(type: "HAS_SKILL", direction: IN)
+        users: [USER!]! @relationship(type: "HAS_SKILL", properties: "Rating", direction: IN)
     }
 
     type USER {
+        id: ID! @id
         name: String
-        skills: [SKILL!]! @relationship(type: "HAS_SKILL", direction: OUT)
+        has_skills: [SKILL!]! @relationship(type: "HAS_SKILL", properties: "Rating", direction: OUT)
     }
 
+    interface Rating @relationshipProperties{
+        rating: Int
+    }
 `;
 
 const driver = neo4j.driver(
