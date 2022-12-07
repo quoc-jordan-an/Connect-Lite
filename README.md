@@ -2,4 +2,10 @@
 Aurthor: Jordan An
 
 Resources:
-- Navbar: https://tailwindui.com/components/application-ui/navigation/navbars 
+    General: 
+        - Navbar: https://tailwindui.com/components/application-ui/navigation/navbars 
+    Apollo:
+        - Get started: https://www.apollographql.com/docs/react/get-started
+    Neo4j:
+    
+    React
