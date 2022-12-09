@@ -3,6 +3,7 @@ import { Fragment, useState, useEffect } from "react";
 import AddUser from "./admin/AddUser";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import ConnectUserToSkills from "./admin/ConnectUserToSkill";
+import ConnectSkilltoUser from "./admin/ConnectSkillToUser";
 // import ConnectUserToSkill from './admin/ConnectUserToSkill';
 
 // const GET_SKILLS = gql`
@@ -32,7 +33,7 @@ const About = () => {
     <div>
       About
       <div>
-        <ConnectUserToSkills user_id="ffac07f5-f196-47f4-babb-e7631fb61556" />
+        <ConnectSkilltoUser skill_id="050d6fe2-e6ed-4aee-b47d-1918c18bb790" />
       </div>
     </div>
   );

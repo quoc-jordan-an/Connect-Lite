@@ -27,29 +27,16 @@ const AddSkill = () => {
     ]
   });
 
-  if (loading) return "Adding...";
+//   if (loading) return "Adding...";
   if (error) return `Add error! ${error.message}`;
 
   return (
     <div className="p-11 py-3 flex flex-col w-3/9 h-60 backdrop-blur box-border border-y-8 border-x-2 border-gray-600 rounded-t-lg shadow-2xl">
-      {/* <div> */}
       <div className="mb-8 font-sans font-bold text-xl text-center text-blue-600 underline">
         ADD A SKILL
       </div>
 
       <div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            addSkill({ variables:{
-                "input": [
-                  {
-                    "skill_name": skill
-                  }
-                ]
-              } });
-          }}
-        >
           <label
             htmlFor="skill"
             className="mb-2 block font-sans font-semibold text-gray-700"
@@ -67,13 +54,22 @@ const AddSkill = () => {
           </div>
           <div className="text-center">
             <button
-              type="submit"
+              type="button"
+              disabled={loading}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full mb-3"
+                onClick={ () =>{
+                    addSkill({ variables:{
+                        "input": [
+                          {
+                            "skill_name": skill
+                          }
+                        ]
+                      } });
+                  }}
             >
               Add
             </button>
           </div>
-        </form>
       </div>
     </div>
   );
