@@ -38,13 +38,13 @@ const Admin = () => {
       </Tab.List>
       <Tab.Panels>
         <Tab.Panel>
-          <div className="flex border flex-row w-full content-center p-4 justify-between items-left">
+          <div className="flex flex-row w-full justify-center content-center border p-4 space-x-3 items-left">
             <AddSkill />
             <DisplaySkills />
           </div>
         </Tab.Panel>
         <Tab.Panel>
-          <div className="flex border flex-row w-full content-center p-4 justify-between items-left">
+          <div className="flex border flex-row w-full content-center p-4 justify-center space-x-3 items-left">
             <AddUser />
             <DisplayUsers />
           </div>

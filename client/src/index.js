@@ -26,20 +26,20 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-client
-  .query({
-    query: gql`
-      query getAllSkills {
-        skills {
-          skill_name
-          users {
-            name
-          }
-        }
-      }
-    `,
-  })
-  .then((result) => console.log(result));
+// client
+//   .query({
+//     query: gql`
+//       query getAllSkills {
+//         skills {
+//           skill_name
+//           users {
+//             name
+//           }
+//         }
+//       }
+//     `,
+//   })
+//   .then((result) => console.log(result));
 
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript

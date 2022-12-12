@@ -31,7 +31,7 @@ const AddSkill = () => {
   if (error) return `Add error! ${error.message}`;
 
   return (
-    <div className="p-11 py-3 flex flex-col w-3/9 h-60 backdrop-blur box-border border-y-8 border-x-2 border-gray-600 rounded-t-lg shadow-2xl">
+    <div className="p-11 py-3 flex flex-col h-60 backdrop-blur box-border border-y-8 border-x-2 border-gray-600 rounded-t-lg shadow-2xl">
       <div className="mb-8 font-sans font-bold text-xl text-center text-blue-600 underline">
         ADD A SKILL
       </div>

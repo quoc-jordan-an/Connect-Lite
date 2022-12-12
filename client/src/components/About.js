@@ -4,6 +4,8 @@ import AddUser from "./admin/AddUser";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import ConnectUserToSkills from "./admin/ConnectUserToSkill";
 import ConnectSkilltoUser from "./admin/ConnectSkillToUser";
+import EditUserConnection from "./admin/EditUserConnection";
+import EditSkillConnection from "./admin/EditSkillConnection";
 // import ConnectUserToSkill from './admin/ConnectUserToSkill';
 
 // const GET_SKILLS = gql`
@@ -33,7 +35,7 @@ const About = () => {
     <div>
       About
       <div>
-        <ConnectSkilltoUser skill_id="050d6fe2-e6ed-4aee-b47d-1918c18bb790" />
+        <EditSkillConnection user_id="56bb81a8-46cf-43e3-8ccf-a1470cca87a4" skill_name="Java"/>
       </div>
     </div>
   );
