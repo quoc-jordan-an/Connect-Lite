@@ -16,7 +16,7 @@ const GET_USERS = gql`
 `;
 
 const User = () => {
-  const [user_id, setUserID] = useState("6cdfd8aa-7f0d-4ff6-b5e1-d0a917969f64");
+  const [user_id, setUserID] = useState("");
   const { loading, error, data } = useQuery(GET_USERS, {onCompleted: () => { setUserID(data.users[0].id)}});
   
 
