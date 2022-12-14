@@ -14,7 +14,7 @@ const Navbar = () => {
   const { logout, isAuthenticated } = useAuth0();
 
   const navigation = [
-    { name: "Home", href: "/home", current: true },
+    { name: "Home", href: "/", current: true },
     { name: "Admin", href: "/admin", current: false },
     { name: "User", href: "/user", current: false },
     { name: "About", href: "/about", current: false },
