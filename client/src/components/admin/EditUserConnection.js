@@ -1,7 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import DeleteConnectionButton from "../DeleteConnectionButton";
 
 const SKILL_OF_USER = gql`
   query skillOfUser($where: USERWhere) {

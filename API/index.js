@@ -10,7 +10,7 @@ const typeDefs = gql`
     }
 
     type USER {
-        id: ID! @id
+        id: ID! 
         name: String
         has_skills: [SKILL!]! @relationship(type: "HAS_SKILL", properties: "Rating", direction: OUT)
     }
