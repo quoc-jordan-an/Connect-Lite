@@ -8,43 +8,23 @@ import {
   ApolloProvider,
   gql,
 } from "@apollo/client";
-// import { ApolloClient } from 'apollo-client';
-// import { HttpLink } from 'apollo-link-http';
-// import { InMemoryCache } from 'apollo-cache-inmemory';
-// import {ApolloProvider} from 'react-apollo';
-// import client from './client';
-
-// const link = new HttpLink({uri: "http://localhost:4000/"});
-// const cache = new InMemoryCache();
-
-// const client = new ApolloClient({
-//     link, cache
-// })
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 
-// client
-//   .query({
-//     query: gql`
-//       query getAllSkills {
-//         skills {
-//           skill_name
-//           users {
-//             name
-//           }
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
-
 const container = document.getElementById("app");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>
+  <Auth0Provider
+    domain="dev-rdbgynu8c6tbjmxl.us.auth0.com"
+    clientId="DDUWBVkJrx56fMo3s1HWObF1Afppu3fG"
+    redirectUri={window.location.origin}
+  >
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </Auth0Provider>
 );
