@@ -1,7 +1,10 @@
 import LoginButton from "./LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState, useEffect, useContext} from "react";
+import { AdminContext } from "./App";
 
 const Home = () => {
+  const admin = useContext(AdminContext);
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
@@ -20,7 +23,23 @@ const Home = () => {
           {isAuthenticated ? (
             <>
               <div className="text-center text-xl">Hello, {user.name}!</div>
-              <div className="text-center text-lg text-red-500 font-bold">Click on the User tab to see/add skills!</div>
+
+              {admin ? (
+                <div className="text-center text-lg text-red-500 font-bold">
+                  You are an admin! Click on the Skills tab to see what you can
+                  do!
+                </div>
+              ) : (
+                <div className="text-center text-lg text-red-500 font-bold">
+                  Click on the Skills tab to see/add skills!
+                </div>
+              )}
+              {/* <h3>App Metadata</h3>
+              {appMetadata ? (
+                <pre>{JSON.stringify(appMetadata, null, 2)}</pre>
+              ) : (
+                "No app metadata defined"
+              )} */}
             </>
           ) : (
             <>

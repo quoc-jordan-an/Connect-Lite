@@ -1,24 +1,31 @@
-import { useState } from "react";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginButton from "./LoginButton";
-
+import { AdminContext } from "./App";
 const Navbar = () => {
+  const admin = useContext(AdminContext);
   // const [open, setOpen] = useState(false);
   // const handleOpen = () => {
   //     setOpen(!open);
   // };
   const { logout, isAuthenticated } = useAuth0();
 
-  const navigation = [
-    { name: "Home", href: "/", current: true },
-    { name: "Admin", href: "/admin", current: false },
-    { name: "User", href: "/user", current: false },
-    { name: "About", href: "/about", current: false },
-  ];
+  const navigation = admin
+    ? [
+        { name: "Home", href: "/", current: true },
+        { name: "Skills/Users", href: "/admin", current: false },
+        { name: "My skills", href: "/user", current: false },
+        { name: "About", href: "/about", current: false },
+      ]
+    : [
+        { name: "Home", href: "/", current: true },
+        // { name: "Admin", href: "/admin", current: false },
+        { name: "Skills", href: "/user", current: false },
+        { name: "About", href: "/about", current: false },
+      ];
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");

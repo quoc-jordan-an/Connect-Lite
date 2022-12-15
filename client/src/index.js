@@ -22,6 +22,8 @@ root.render(
     domain="dev-rdbgynu8c6tbjmxl.us.auth0.com"
     clientId="DDUWBVkJrx56fMo3s1HWObF1Afppu3fG"
     redirectUri={window.location.origin}
+    audience="https://dev-rdbgynu8c6tbjmxl.us.auth0.com/api/v2/"
+    scope="read:current_user update:current_user_metadata"
   >
     <ApolloProvider client={client}>
       <App />

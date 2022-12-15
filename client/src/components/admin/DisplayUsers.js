@@ -85,7 +85,7 @@ const DisplayUsers = () => {
           <div className="flex flex-row space-x-1 ">
             <EditUserConnection user_id={users.id} user_name={users.name} />
             <ConnectUserToSkills user_id={users.id} />
-            {users.id == "7af06fe1-f312-450a-9a37-026cbf386f15" ? (
+            {/* {users.id == "7af06fe1-f312-450a-9a37-026cbf386f15" ? (
               <div />
             ) : (
               <button
@@ -104,7 +104,7 @@ const DisplayUsers = () => {
                 {" "}
                 -{" "}
               </button>
-            )}
+            )} */}
           </div>
         </div>
       ))}

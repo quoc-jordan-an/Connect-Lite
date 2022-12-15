@@ -35,7 +35,7 @@ const About = () => {
     <div>
       About
       <div>
-        <EditSkillConnection user_id="56bb81a8-46cf-43e3-8ccf-a1470cca87a4" skill_name="Java"/>
+        {/* <EditSkillConnection user_id="56bb81a8-46cf-43e3-8ccf-a1470cca87a4" skill_name="Java"/> */}
       </div>
     </div>
   );

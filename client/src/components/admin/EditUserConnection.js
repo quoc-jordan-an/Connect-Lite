@@ -169,23 +169,27 @@ const EditUserConnection = ({ user_id, user_name }) => {
                       <label className="block text-gray-700 text-sm font-bold mb-2">
                         Skills:
                       </label>
-                      <select
-                        className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        disabled={!data.users[0].has_skills.length}
-                        id="skill"
-                        onChange={(e) => {
-                          setSkillID(e.target.value);
-                        }}
-                        onBlur={(e) => {
-                          setSkillID(e.target.value);
-                        }}
-                      >
-                        {data.users[0].has_skills.map((skill, i) => (
-                          <option key={i} value={skill.id}>
-                            {skill.skill_name}
-                          </option>
-                        ))}
-                      </select>
+                      {data.users[0] ? (
+                        <select
+                          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          disabled={!data.users[0].has_skills.length}
+                          id="skill"
+                          onChange={(e) => {
+                            setSkillID(e.target.value);
+                          }}
+                          onBlur={(e) => {
+                            setSkillID(e.target.value);
+                          }}
+                        >
+                          {data.users[0].has_skills.map((skill, i) => (
+                            <option key={i} value={skill.id}>
+                              {skill.skill_name}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <option />
+                      )}
                     </div>
                     <div className="mb-6 ">
                       <label className="block text-gray-700 text-sm font-bold mb-2">
