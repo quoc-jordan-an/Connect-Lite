@@ -1,18 +1,18 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
-
-const GET_SKILLS = gql`
-  query getAllSkills {
-    skills {
-      skill_name
-      id
-      users {
-        name
-      }
-    }
-  }
-`;
+import { GET_SKILLS } from "../../query/GET_SKILLS";
+// const GET_SKILLS = gql`
+//   query getAllSkills {
+//     skills {
+//       skill_name
+//       id
+//       users {
+//         name
+//       }
+//     }
+//   }
+// `;
 
 const CONNECT_U_TO_S = gql`
   mutation connectUTS($where: USERWhere, $connect: USERConnectInput) {

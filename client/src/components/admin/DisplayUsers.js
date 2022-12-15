@@ -1,18 +1,18 @@
 import { gql, useQuery, useMutation } from "@apollo/client";
 import ConnectUserToSkills from "./ConnectUserToSkill";
 import EditUserConnection from "./EditUserConnection";
-
-const GET_USERS = gql`
-  query getAllUsers {
-    users {
-      id
-      name
-      has_skills {
-        skill_name
-      }
-    }
-  }
-`;
+import { GET_USERS } from "../../query/GET_USERS";
+// const GET_USERS = gql`
+//   query getAllUsers {
+//     users {
+//       id
+//       name
+//       has_skills {
+//         skill_name
+//       }
+//     }
+//   }
+// `;
 
 // const DELETE_ALL_USERS = gql`
 //   mutation deleteAllUsers {

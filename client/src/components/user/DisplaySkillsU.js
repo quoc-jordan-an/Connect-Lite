@@ -1,6 +1,7 @@
 import EditSkillConnection from "../admin/EditSkillConnection";
 import { gql, useQuery, useMutation } from "@apollo/client";
 import EditConnection from "./EditConnection";
+import { SKILL_OF_USER } from "../../query/SKILL_OF_USER";
 
 const SKILL_RATING_OF_USER = gql`
   query skillRatingOfUser($where: USERWhere) {

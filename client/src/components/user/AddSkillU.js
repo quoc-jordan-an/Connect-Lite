@@ -1,16 +1,22 @@
 import { gql, useQuery, useMutation } from "@apollo/client";
 import { useState } from "react";
-const GET_SKILLS = gql`
-  query getAllSkills {
-    skills {
-      skill_name
-      id
-      users {
-        name
-      }
-    }
-  }
-`;
+import { GET_SKILLS } from "../../query/GET_SKILLS";
+import { GET_USERS } from "../../query/GET_USERS";
+import { USER_OF_SKILL } from "../../query/USER_OF_SKILL";
+import { SKILL_OF_USER } from "../../query/SKILL_OF_USER";
+
+
+// const GET_SKILLS = gql`
+//   query getAllSkills {
+//     skills {
+//       skill_name
+//       id
+//       users {
+//         name
+//       }
+//     }
+//   }
+// `;
 
 const CONNECT_U_TO_S = gql`
   mutation connectUTS($where: USERWhere, $connect: USERConnectInput) {

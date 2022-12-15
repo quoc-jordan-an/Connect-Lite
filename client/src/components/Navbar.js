@@ -18,13 +18,13 @@ const Navbar = () => {
         { name: "Home", href: "/", current: true },
         { name: "Skills/Users", href: "/admin", current: false },
         { name: "My skills", href: "/user", current: false },
-        { name: "About", href: "/about", current: false },
+        // { name: "About", href: "/about", current: false },
       ]
     : [
         { name: "Home", href: "/", current: true },
         // { name: "Admin", href: "/admin", current: false },
         { name: "Skills", href: "/user", current: false },
-        { name: "About", href: "/about", current: false },
+        // { name: "About", href: "/about", current: false },
       ];
 
   function classNames(...classes) {

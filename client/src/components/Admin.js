@@ -45,7 +45,8 @@ const Admin = () => {
         </Tab.Panel>
         <Tab.Panel>
           <div className="flex border flex-row w-full content-center p-4 justify-center space-x-3 items-left">
-            <AddUser />
+            {/* <AddUser /> */}
+            <AddSkill />
             <DisplayUsers />
           </div>
         </Tab.Panel>
