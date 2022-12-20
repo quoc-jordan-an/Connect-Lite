@@ -2,6 +2,8 @@ import { gql, useQuery, useMutation } from "@apollo/client";
 import ConnectSkillToUser from "./ConnectSkillToUser";
 import EditSkillConnection from "./EditSkillConnection";
 import { GET_SKILLS } from "../../query/GET_SKILLS";
+import { SKILL_OF_USER } from "../../query/SKILL_OF_USER";
+import { USER_OF_SKILL } from "../../query/USER_OF_SKILL";
 // const GET_SKILLS = gql`
 //   query getAllSkills {
 //     skills {
@@ -34,11 +36,11 @@ const DisplaySkills = () => {
   const { loading, error, data } = useQuery(GET_SKILLS);
   const [deleteAllSkills, { data_del, loading_del, error_del }] = useMutation(
     DELETE_ALL_SKILLS,
-    { refetchQueries: ["getAllSkills", "getAllUsers", "skillOfUser", "userOfSkill"] }
+    { refetchQueries: ["getAllSkills", "getAllUsers", "userOfSkill"] }
   );
   const [deleteSkill, { data_del1, loading_del1, error_del1 }] = useMutation(
     DELETE_SKILL,
-    { refetchQueries: ["getAllSkills", "getAllUsers", "skillOfUser", "userOfSkill"] }
+    { refetchQueries: ["getAllSkills", "getAllUsers", "userOfSkill"] }
   );
 
   if (loading || loading_del) return <p>Loading...</p>;
