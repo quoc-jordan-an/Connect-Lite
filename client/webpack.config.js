@@ -1,6 +1,10 @@
+const Dotenv = require('dotenv-webpack');
+// import { DefinePlugin } from "webpack";
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const dotenv = require("dotenv");
 const webpack = require("webpack");
 // const fs = require('fs');
+require("dotenv").config({ path: "./.env" });
 const htmlPlugin = new HtmlWebPackPlugin({
   template: "./src/index.html",
   filename: "./index.html",
@@ -30,7 +34,7 @@ module.exports = {
 
   devServer: {
     historyApiFallback: true,
-    https: true
+    https: true,
     // https: {
     //   key: fs.readFileSync("C:/Users/jan/localhost-key.pem"),
     //   cert: fs.readFileSync("C:/Users/jan/localhost.pem"),
@@ -42,5 +46,11 @@ module.exports = {
     // filename: 'index.js',
     publicPath: "/",
   },
-  plugins: [htmlPlugin],
+  plugins: [
+    htmlPlugin,
+    // new webpack.DefinePlugin({
+    //   "process.env": JSON.stringify(process.env),
+    // }),
+    new Dotenv()
+  ],
 };
