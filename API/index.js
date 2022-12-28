@@ -34,8 +34,8 @@ const typeDefs = gql`
 `;
 
 const driver = neo4j.driver(
-  "neo4j://localhost:7687",
-  neo4j.auth.basic("neo4j", "12345678910")
+  "neo4j+s://cf6de691.databases.neo4j.io",
+  neo4j.auth.basic("neo4j", "hCvSoOC9UHTmt7ouRu2V7b1LYkZEDVyuHCEqX8kYF_w")
 );
 
 const neoSchema = new Neo4jGraphQL({ typeDefs, driver });

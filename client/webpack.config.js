@@ -10,7 +10,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: "./index.html",
 });
 module.exports = {
-  mode: "development",
+  // mode: "development",
   module: {
     rules: [
       {
@@ -34,7 +34,7 @@ module.exports = {
 
   devServer: {
     historyApiFallback: true,
-    https: true,
+    // https: true,
     // https: {
     //   key: fs.readFileSync("C:/Users/jan/localhost-key.pem"),
     //   cert: fs.readFileSync("C:/Users/jan/localhost.pem"),

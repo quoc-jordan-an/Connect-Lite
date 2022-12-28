@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --config webpack.config.js"
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
+    "start2": "webpack serve --config webpack.config.js",
+    "deploy": "aws s3 sync dist/ s3://jordan-connect-lite"
   },
   "keywords": [],
   "author": "",
