@@ -11,7 +11,7 @@ import {
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const client = new ApolloClient({
-  uri: "http://localhost:4000/",
+  uri: "https://bebxhb6c1e.execute-api.us-east-1.amazonaws.com/",
   cache: new InMemoryCache(),
 });
 

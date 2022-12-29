@@ -1,6 +1,13 @@
-const { Neo4jGraphQL } = require("@neo4j/graphql");
-const { ApolloServer, gql } = require("apollo-server");
-const neo4j = require("neo4j-driver");
+// const startServerAndCreateLambdaHandler = require('@as-integrations/aws-lambda');
+import { startServerAndCreateLambdaHandler } from "@as-integrations/aws-lambda";
+import { Neo4jGraphQL } from "@neo4j/graphql";
+import { ApolloServer } from "@apollo/server";
+import { gql } from "apollo-server";
+import neo4j from "neo4j-driver";
+// const { Neo4jGraphQL } = require("@neo4j/graphql");
+// const { ApolloServer, gql } = require("apollo-server");
+// const neo4j = require("neo4j-driver");
+// const { ApolloServer, gql } = require(‘apollo-server-lambda’);
 
 const typeDefs = gql`
   type SKILL {
@@ -39,13 +46,45 @@ const driver = neo4j.driver(
 );
 
 const neoSchema = new Neo4jGraphQL({ typeDefs, driver });
+// const resolvers = {
+//   Query: {
+//     hello: () => 'world',
+//   },
+// };
+// const resolvers = {
+//   Query: {
+//     hello: () => 'world',
+//   },
+// };
+// const schema = neoSchema.getSchema().then((schema) => {
+//     const server = new ApolloServer({
+//       schema,
+//     });
 
-neoSchema.getSchema().then((schema) => {
-  const server = new ApolloServer({
-    schema,
-  });
-
-  server.listen().then(({ url }) => {
-    console.log(`🚀 Server ready at ${url}`);
-  });
+//   });
+const schema = await neoSchema.getSchema();
+const server = new ApolloServer({
+  schema,
+  // resolvers
 });
+export const graphqlHandler = startServerAndCreateLambdaHandler(server);
+// export const graphqlHandler = async () => {
+//   return await neoSchema.getSchema().then((schema) => {
+//     const server = new ApolloServer({
+//       schema,
+//       // context: ({ event }) => ({ req: event }),
+//       // introspection: process.env.SLS_STAGE === 'dev',
+//     });
+//     return startServerAndCreateLambdaHandler(server);
+//   });
+// };
+
+// neoSchema.getSchema().then((schema) => {
+//   const server = new ApolloServer({
+//     schema,
+//   });
+
+//   server.listen().then(({ url }) => {
+//     console.log(`🚀 Server ready at ${url}`);
+//   });
+// });
