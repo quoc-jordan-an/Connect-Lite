@@ -58,11 +58,7 @@ const ConnectSkillToUser = ({ skill_id }) => {
           ],
         },
       },
-      refetchQueries: [
-        "getAllSkills",
-        "getAllUsers",
-        "userOfSkill"
-      ],
+      refetchQueries: ["getAllSkills", "getAllUsers", "userOfSkill"],
     }
   );
 
@@ -129,23 +125,27 @@ const ConnectSkillToUser = ({ skill_id }) => {
                       <label className="block text-gray-700 text-sm font-bold mb-2">
                         User:
                       </label>
-                      <select
-                        className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        disabled={!data.users.length}
-                        id="user"
-                        onChange={(e) => {
-                          setUserID(e.target.value);
-                        }}
-                        onBlur={(e) => {
-                          setUserID(e.target.value);
-                        }}
-                      >
-                        {data.users.map((users, i) => (
-                          <option key={i} value={users.id}>
-                            {users.name}
-                          </option>
-                        ))}
-                      </select>
+                      {data ? (
+                        <select
+                          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          disabled={!data.users.length}
+                          id="user"
+                          onChange={(e) => {
+                            setUserID(e.target.value);
+                          }}
+                          onBlur={(e) => {
+                            setUserID(e.target.value);
+                          }}
+                        >
+                          {data.users.map((users, i) => (
+                            <option key={i} value={users.id}>
+                              {users.name}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                     <div className="mb-6 ">
                       <label className="block text-gray-700 text-sm font-bold mb-2">

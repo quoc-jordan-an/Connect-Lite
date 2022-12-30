@@ -54,7 +54,15 @@ const DisplaySkills = () => {
           ALL SKILLS
         </div>
         <button
-          onClick={() => deleteAllSkills()}
+          onClick={() => {
+            if (
+              confirm(
+                "Are you sure you want to delete all skill? This action can't be undone"
+              ) == true
+            ) {
+              deleteAllSkills();
+            }
+          }}
           className="border border-black px-2 border-b-2 text-white font-medium bg-red-600 rounded-md"
         >
           Delete All
@@ -81,19 +89,28 @@ const DisplaySkills = () => {
             {/* <button className="border border-gray-500 rounded w-5 h-5 text-center font-mono text-sm text-white bg-green-600 font-extrabold">
               +
             </button> */}
-            <EditSkillConnection skill_id={skills.id} skill_name={skills.skill_name}/>
+            <EditSkillConnection
+              skill_id={skills.id}
+              skill_name={skills.skill_name}
+            />
             <ConnectSkillToUser skill_id={skills.id} />
             <button
               type="button"
-              onClick={() =>
-                deleteSkill({
-                  variables: {
-                    where: {
-                      id_IN: skills.id,
+              onClick={() => {
+                if (
+                  confirm(
+                    "Are you sure you want to delete this skill? This action can't be undone"
+                  ) == true
+                ) {
+                  deleteSkill({
+                    variables: {
+                      where: {
+                        id_IN: skills.id,
+                      },
                     },
-                  },
-                })
-              }
+                  });
+                }
+              }}
               className="border border-gray-500 rounded w-5 h-5 text-center font-mono text-sm text-white bg-red-600 font-extrabold"
             >
               {" "}

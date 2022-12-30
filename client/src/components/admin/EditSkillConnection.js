@@ -73,7 +73,7 @@ const EditSkillConnection = ({ skill_id, skill_name }) => {
           id: null,
         },
       },
-      refetchQueries: ["getAllSkills", "getAllUsers", "userOfSkill"]
+      refetchQueries: ["getAllSkills", "getAllUsers", "userOfSkill"],
     }
   );
 
@@ -170,23 +170,27 @@ const EditSkillConnection = ({ skill_id, skill_name }) => {
                       <label className="block text-gray-700 text-sm font-bold mb-2">
                         Users:
                       </label>
-                      <select
-                        className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        disabled={!data.skills[0].users.length}
-                        id="user"
-                        onChange={(e) => {
-                          setUserID(e.target.value);
-                        }}
-                        onBlur={(e) => {
-                          setUserID(e.target.value);
-                        }}
-                      >
-                        {data.skills[0].users.map((user, i) => (
-                          <option key={i} value={user.id}>
-                            {user.name}
-                          </option>
-                        ))}
-                      </select>
+                      {data.skills[0] ? (
+                        <select
+                          className="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                          disabled={!data.skills[0].users.length}
+                          id="user"
+                          onChange={(e) => {
+                            setUserID(e.target.value);
+                          }}
+                          onBlur={(e) => {
+                            setUserID(e.target.value);
+                          }}
+                        >
+                          {data.skills[0].users.map((user, i) => (
+                            <option key={i} value={user.id}>
+                              {user.name}
+                            </option>
+                          ))}
+                        </select>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                     <div className="mb-6 ">
                       <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -309,24 +313,30 @@ const EditSkillConnection = ({ skill_id, skill_name }) => {
                         className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button"
                         onClick={() => {
-                          deleteConnect({
-                            variables: {
-                              disconnect: {
-                                users: [
-                                  {
-                                    where: {
-                                      node: {
-                                        id: user_id,
+                          if (
+                            confirm(
+                              "Are you sure you want to delete this skill? This action can't be undone"
+                            ) == true
+                          ) {
+                            deleteConnect({
+                              variables: {
+                                disconnect: {
+                                  users: [
+                                    {
+                                      where: {
+                                        node: {
+                                          id: user_id,
+                                        },
                                       },
                                     },
-                                  },
-                                ],
+                                  ],
+                                },
+                                where: {
+                                  id: skill_id,
+                                },
                               },
-                              where: {
-                                id: skill_id,
-                              },
-                            },
-                          });
+                            });
+                          }
                           closeModal();
                         }}
                       >

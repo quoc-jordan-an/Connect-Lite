@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
-
+import { USER_OF_SKILL } from "../../query/USER_OF_SKILL";
 const ADD_SKILL = gql`
   mutation AddSkills($input: [SKILLCreateInput!]!) {
     createSkills(input: $input) {
@@ -14,20 +14,17 @@ const ADD_SKILL = gql`
 const AddSkill = () => {
   const [skill, setSkill] = useState("");
   const [addSkill, { data, loading, error }] = useMutation(ADD_SKILL, {
-    variables: 
+    variables: {
+      input: [
         {
-            "input": [
-              {
-                "skill_name": "Default Skill"
-              }
-            ]
-        }
-    , refetchQueries: [
-        'getAllSkills'
-    ]
+          skill_name: "Default Skill",
+        },
+      ],
+    },
+    refetchQueries: ["getAllSkills", "userOfSkill"],
   });
 
-//   if (loading) return "Adding...";
+  //   if (loading) return "Adding...";
   if (error) return `Add error! ${error.message}`;
 
   return (
@@ -37,39 +34,41 @@ const AddSkill = () => {
       </div>
 
       <div>
-          <label
-            htmlFor="skill"
-            className="mb-2 block font-sans font-semibold text-gray-700"
+        <label
+          htmlFor="skill"
+          className="mb-2 block font-sans font-semibold text-gray-700"
+        >
+          Skill Name: <br></br>
+        </label>
+        <div className="relative mt-1 rounded-md shadow-sm mb-6">
+          <input
+            id="skill"
+            value={skill}
+            placeholder="Skill"
+            className="shadow appearance-none border block py-1 w-full rounded-md border-gray-400 pl-2 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            onChange={(e) => setSkill(e.target.value)}
+          />
+        </div>
+        <div className="text-center">
+          <button
+            type="button"
+            disabled={loading}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full mb-3"
+            onClick={() => {
+              addSkill({
+                variables: {
+                  input: [
+                    {
+                      skill_name: skill,
+                    },
+                  ],
+                },
+              });
+            }}
           >
-            Skill Name: <br></br>
-          </label>
-          <div className="relative mt-1 rounded-md shadow-sm mb-6">
-            <input
-              id="skill"
-              value={skill}
-              placeholder="Skill"
-              className="shadow appearance-none border block py-1 w-full rounded-md border-gray-400 pl-2 pr-12 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-              onChange={(e) => setSkill(e.target.value)}
-            />
-          </div>
-          <div className="text-center">
-            <button
-              type="button"
-              disabled={loading}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full mb-3"
-                onClick={ () =>{
-                    addSkill({ variables:{
-                        "input": [
-                          {
-                            "skill_name": skill
-                          }
-                        ]
-                      } });
-                  }}
-            >
-              Add
-            </button>
-          </div>
+            Add
+          </button>
+        </div>
       </div>
     </div>
   );

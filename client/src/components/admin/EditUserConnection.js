@@ -1,7 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import {SKILL_OF_USER} from  "../../query/SKILL_OF_USER"
+import { SKILL_OF_USER } from "../../query/SKILL_OF_USER";
 
 // const SKILL_OF_USER = gql`
 //   query skillOfUser($where: USERWhere) {
@@ -313,24 +313,30 @@ const EditUserConnection = ({ user_id, user_name }) => {
                         className="bg-red-500 hover:bg-red-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button"
                         onClick={() => {
-                          deleteConnect({
-                            variables: {
-                              disconnect: {
-                                users: [
-                                  {
-                                    where: {
-                                      node: {
-                                        id: user_id,
+                          if (
+                            confirm(
+                              "Are you sure you want to delete this user's skill? This action can't be undone"
+                            ) == true
+                          ) {
+                            deleteConnect({
+                              variables: {
+                                disconnect: {
+                                  users: [
+                                    {
+                                      where: {
+                                        node: {
+                                          id: user_id,
+                                        },
                                       },
                                     },
-                                  },
-                                ],
+                                  ],
+                                },
+                                where: {
+                                  id: skill_id,
+                                },
                               },
-                              where: {
-                                id: skill_id,
-                              },
-                            },
-                          });
+                            });
+                          }
                           closeModal();
                         }}
                       >

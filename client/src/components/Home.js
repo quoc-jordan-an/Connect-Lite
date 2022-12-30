@@ -2,10 +2,34 @@ import LoginButton from "./LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState, useEffect, useContext} from "react";
 import { AdminContext } from "./App";
+import Confirmation from "./admin/Confirmation";
+
+
 
 const Home = () => {
   const admin = useContext(AdminContext);
+  const [confirm, setConfirm] = useState(false)
   const { user, isAuthenticated, isLoading } = useAuth0();
+
+  let conf;
+  // function conf () {
+  //   if (confirm){
+  //     setConfirm(false)
+  //     return <Confirmation open1 = {true}/>
+  //   }
+  //   return <></>
+  // }
+
+  if (confirm){
+    conf = <Confirmation open1 = {true}/>
+    setConfirm(false)
+    
+  }
+  else{conf = <></>}
+
+  // useEffect(()=>{
+  //   setConfirm(false)
+  // }, [confirm])
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -14,7 +38,10 @@ const Home = () => {
     <div className="flex flex-col justify-around place-content-center">
       <div className="pt-64" />
       <div className=" flex flex-row justify-center">
-        <div />
+        <div>
+          {/* <button onClick={() => setConfirm(!confirm)}>CLICK ME</button>
+          {confirm ?  } */}
+        </div>
         <div className="backdrop-blur-sm p-6 border-4 border-gray-800">
           <div className="text-center text-7xl font-mono font-bold text-blue-800 underline pb-5">
             Welcome to Connect Lite!

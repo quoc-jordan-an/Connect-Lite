@@ -1,6 +1,7 @@
 import { gql, useQuery, useMutation } from "@apollo/client";
 import ConnectUserToSkills from "./ConnectUserToSkill";
 import EditUserConnection from "./EditUserConnection";
+
 import { GET_USERS } from "../../query/GET_USERS";
 import axios from "axios";
 import EditUser from "./EditUser";
@@ -87,47 +88,54 @@ const DisplayUsers = () => {
           </div>
           <div className="flex flex-auto" />
           <div className="flex flex-row space-x-1 ">
-            <EditUser user_id={users.id} user_name={users.name}/>
+            <EditUser user_id={users.id} user_name={users.name} />
             <EditUserConnection user_id={users.id} user_name={users.name} />
             <ConnectUserToSkills user_id={users.id} />
             <button
               type="button"
               onClick={() => {
-                deleteUser({
-                  variables: {
-                    where: {
-                      id_IN: users.id,
+                if (confirm("Are you sure you want to delete this user? This action can't be undone") == true) {
+                  deleteUser({
+                    variables: {
+                      where: {
+                        id_IN: users.id,
+                      },
                     },
-                  },
-                });
-                try {
-                  var options = {
-                    method: "DELETE",
-                    url: `https://dev-rdbgynu8c6tbjmxl.us.auth0.com/api/v2/users/${users.id}`,
-                    // params: { q: 'email:"jan@jahnelgroup.com"', search_engine: "v3" },
+                  });
+                  try {
+                    var options = {
+                      method: "DELETE",
+                      url: `https://dev-rdbgynu8c6tbjmxl.us.auth0.com/api/v2/users/${users.id}`,
+                      // params: { q: 'email:"jan@jahnelgroup.com"', search_engine: "v3" },
 
-                    headers: {
-                      Authorization: `Bearer ${key}`
-                    },
-                  };
+                      headers: {
+                        Authorization: `Bearer ${key}`,
+                      },
+                    };
 
-                  axios
-                    .request(options)
-                    .then(function (response) {
-                      console.log(response.data);
-                    })
-                    .catch(function (error) {
-                      console.error(error);
-                    });
-                } catch (e) {
-                  console.log(e.message);
+                    axios
+                      .request(options)
+                      .then(function (response) {
+                        console.log(response.data);
+                      })
+                      .catch(function (error) {
+                        console.error(error);
+                      });
+                  } catch (e) {
+                    console.log(e.message);
+                  }
                 }
+                else{
+                  console.log("nope");
+                }
+                
               }}
               className="border border-gray-500 rounded w-5 h-5 text-center font-mono text-sm text-white bg-red-600 font-extrabold"
             >
               {" "}
               -{" "}
             </button>
+            
           </div>
         </div>
       ))}
